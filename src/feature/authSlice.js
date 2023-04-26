@@ -17,15 +17,6 @@ export const registerUser = createAsyncThunk('auth/register', async (data, thunk
 	}
 });
 
-export const confirmEmail = createAsyncThunk('auth/confirmEmail', async (userId, thunkApi) => {
-	try {
-		return await authServices.confirmEmail(userId);
-	} catch (error) {
-		const message = error.response.data.msg || error.response.statusText || error.message;
-
-		return thunkApi.rejectWithValue(message);
-	}
-});
 
 export const logoutUser = createAsyncThunk('/auth/logout', async (_, thunkApi) => {
 	try {
@@ -50,6 +41,7 @@ export const loginUser = createAsyncThunk('auth/login', async (userData, thunkAp
 // send refresh token and get access token and user back
 export const getAccessToken = createAsyncThunk('/auth/getToken', async (_, thunkApi) => {
 	const auth = thunkApi.getState().auth;
+	console.log(auth)
 	try {
 		if (auth.user || auth.status === 'pending' || auth.status === 'succeeded') {
 			console.log(auth);
@@ -79,14 +71,6 @@ const authSlice = createSlice({
 			.addCase(registerUser.rejected, (state, action) => {
 				state.status = 'failed';
 				state.message = action.payload;
-			})
-			.addCase(confirmEmail.pending, (state) => {
-				state.status = 'pending';
-			})
-			.addCase(confirmEmail.fulfilled, (state, action) => {
-				state.status = 'succeeded';
-				state.user = action.payload?.user;
-				accessToken.setToken(action.payload?.accessToken);
 			})
 			.addCase(logoutUser.fulfilled, (state) => {
 				state.status = 'succeeded';

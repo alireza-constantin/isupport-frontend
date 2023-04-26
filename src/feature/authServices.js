@@ -5,16 +5,12 @@ import { URL } from '../config/constants';
 const url = `${URL}/user/`;
 
 const register = async (userData) => {
-	const { data } = await axios.post(url + 'register', userData);
-	return data;
-};
-
-const confirmEmail = async (userId) => {
-	const { data } = await axios.get(url + 'register/confirm-email/' + userId, {
-		withCredentials: true,
+	const { data } = await axios.post(url + 'register', userData, {
+		withCredentials: true
 	});
 	return data;
 };
+
 
 const logout = async () => {
 	const { data } = await axios.get(url + 'logout', {
@@ -47,7 +43,6 @@ const getAccessToken = async () => {
 
 const authService = {
 	register,
-	confirmEmail,
 	logout,
 	login,
 	getAccessToken,

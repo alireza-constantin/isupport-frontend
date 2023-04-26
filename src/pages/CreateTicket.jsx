@@ -23,7 +23,7 @@ export function CreateTicket() {
 		try {
 			await dispatch(createTicket(ticketData)).unwrap();
 			toast.success('Ticket Created Successfully');
-			navigate('/');
+			navigate('/tickets');
 		} catch (error) {
 			toast.error(error);
 		} finally {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { registerUser } from '../feature/authSlice';
 import PasswordChecker from '../component/PasswordChecker';
@@ -24,10 +24,7 @@ export function Register() {
 		reset,
 	} = useForm();
 
-	const location = useLocation();
-
-	const from = location.state?.from?.pathname || '/';
-
+	const navigate = useNavigate()
 	const dispatch = useDispatch();
 
 	// watching for password strength chekc
@@ -64,9 +61,9 @@ export function Register() {
 
 		try {
 			await dispatch(registerUser(data)).unwrap();
-			toast.success(`You register Succesfully.`);
+			toast.success(`You register Succesfully, Please Login`);
+			navigate('/login')
 			setLoading(false);
-			navigate(from, { replace: true });
 		} catch (error) {
 			toast.error(error);
 			setLoading(false);
