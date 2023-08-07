@@ -1,10 +1,10 @@
 const accessToken = {
 	token: '',
 	setToken(newToken) {
-		this.token = newToken;
+		localStorage.setItem('jwt-access', newToken)
 	},
 	getToken() {
-		return this.token;
+		return localStorage.getItem('jwt-access')
 	},
 };
 
