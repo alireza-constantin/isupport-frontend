@@ -12,10 +12,10 @@ https://isupport-frontend.vercel.app/
 
 ## Screenshots
 
-![App Screenshot](./public/screen1.jpg)
-![App Screenshot](./public/screen2.jpg)
-![App Screenshot](./public/screen3.jpg)
-![App Screenshot](./public/screen4.jpg)
+![App Screenshot](./public/screen1.png)
+![App Screenshot](./public/screen2.png)
+![App Screenshot](./public/screen3.png)
+![App Screenshot](./public/screen4.png)
 
 
 ## Tech Stack
